@@ -1,5 +1,9 @@
+Data/
 data/
 *.nc
-*.h5
+*.pkl
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
 __pycache__/
 .ipynb_checkpoints/
