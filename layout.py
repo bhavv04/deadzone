@@ -4,149 +4,150 @@ from dash import dcc, html
 def create_layout():
     return html.Div([
 
-        # navbar
+        # paper header
+        html.Div([
+            html.P("Oceanography · Hypoxia · Predictive Modeling", className='hero-eyebrow'),
+            html.H1("Dead Zones on a Clock", className='paper-title'),
+            html.P("Modeling the seasonal collapse and recovery of Gulf of Mexico hypoxic zones using four decades of observational data.",
+                   className='paper-subtitle'),
+            html.P("Bhavdeep Arora", className='paper-meta'),
+        ], className='paper-header'),
+
+        # abstract
         html.Div([
             html.Div([
-                html.H1("Dead Zones on a Clock", className='nav-title'),
-            ], className='nav-brand'),
-            html.Span("Gulf of Mexico · 1985–2024", className='nav-tag'),
-        ], className='navbar'),
+                html.P("Abstract", className='section-label'),
+                html.P("Every summer, a hypoxic zone - a region where dissolved oxygen drops below levels that can support marine life forms in the Gulf of Mexico near the mouth of the Mississippi River. This study analyzes 40 years of annual cruise measurements (1985–2024) from NOAA and LUMCON to model the drivers of dead zone size. A Random Forest regression model trained on spring nitrogen loading and sea surface temperature achieves R² = 0.52 with leave-one-out cross-validation. Nitrogen flux alone accounts for 80.4% of predictive importance. Six anomalous years are identified where discrete meteorological events, including hurricanes and record flooding caused the dead zone to deviate sharply from model predictions.",
+                       className='abstract-text'),
+            ], className='abstract-box'),
+        ], className='paper-section'),
 
-        # hero
-        html.Div([
-            html.P("40 years of NOAA/LUMCON hypoxia data", className='hero-eyebrow'),
-            html.H2("Every summer, an area the size of New Jersey suffocates in the Gulf of Mexico.",
-                    className='hero-title'),
-            html.P("This dashboard models the annual collapse and recovery of the Gulf of Mexico dead zone using nitrogen loading, sea surface temperature, and Random Forest regression.",
-                   className='hero-sub'),
-
-            # stat pills
-            html.Div([
-                html.Div([
-                    html.P("15,154 km²", className='stat-val'),
-                    html.P("40-year mean", className='stat-label'),
-                ], className='stat-pill'),
-                html.Div([
-                    html.P("22,720 km²", className='stat-val'),
-                    html.P("Record (2017)", className='stat-label'),
-                ], className='stat-pill'),
-                html.Div([
-                    html.P("r = 0.788", className='stat-val'),
-                    html.P("Nitrogen correlation", className='stat-label'),
-                ], className='stat-pill'),
-                html.Div([
-                    html.P("80.4%", className='stat-val'),
-                    html.P("N load importance", className='stat-label'),
-                ], className='stat-pill'),
-                html.Div([
-                    html.P("R² = 0.52", className='stat-val'),
-                    html.P("Model performance", className='stat-label'),
-                ], className='stat-pill'),
-            ], className='stat-row'),
-
-        ], className='hero'),
-
-        # findings summary
+        # key numbers
         html.Div([
             html.Div([
-                html.P("What this research finds", className='summary-label'),
+                html.P("Key figures", className='section-label'),
                 html.Div([
                     html.Div([
-                        html.P("The cause is fertilizer, not weather", className='summary-title'),
-                        html.P("Every spring, nitrogen fertilizer from Midwest farms drains into the Mississippi River and flows into the Gulf. This triggers massive algal blooms. When the algae die and decompose, they consume all the oxygen in the water — suffocating fish, shrimp, and everything else on the seafloor. Our model shows that the amount of nitrogen entering the river in spring predicts the size of the dead zone that summer with a correlation of r = 0.788. Weather plays a secondary role.", className='summary-text'),
-                    ], className='summary-block'),
+                        html.P("15,154 km²", className='kf-val'),
+                        html.P("40-year mean dead zone area", className='kf-label'),
+                    ], className='kf-item'),
+                    html.Div([html.Div(className='kf-divider')]),
                     html.Div([
-                        html.P("Some years defy the model", className='summary-title'),
-                        html.P("Six years had dead zones dramatically larger or smaller than the nitrogen load would predict. In 2017, record spring flooding pushed the zone to 22,720 km² — the largest ever recorded. In 2020, Hurricane Hanna hit the Gulf just days before the annual survey cruise, physically mixing the water column and breaking up the dead zone before it could be measured. These anomalies are flagged in red throughout the charts.", className='summary-text'),
-                    ], className='summary-block'),
+                        html.P("22,720 km²", className='kf-val'),
+                        html.P("Record extent — 2017", className='kf-label'),
+                    ], className='kf-item'),
+                    html.Div([html.Div(className='kf-divider')]),
                     html.Div([
-                        html.P("Policy has not worked", className='summary-title'),
-                        html.P("The Gulf Hypoxia Task Force set a target of reducing the dead zone to under 4,921 km² by 2035. The 40-year average is 15,154 km² — more than three times that target. Despite decades of awareness, the zone has not meaningfully shrunk. Reducing it requires cutting nitrogen runoff from agriculture across 40% of the continental United States.", className='summary-text'),
-                    ], className='summary-block'),
-                ], className='summary-grid'),
-            ], className='summary-inner'),
-        ], className='summary-section'),
+                        html.P("r = 0.788", className='kf-val'),
+                        html.P("Nitrogen-area correlation", className='kf-label'),
+                    ], className='kf-item'),
+                    html.Div([html.Div(className='kf-divider')]),
+                    html.Div([
+                        html.P("80.4%", className='kf-val'),
+                        html.P("N-load feature importance", className='kf-label'),
+                    ], className='kf-item'),
+                    html.Div([html.Div(className='kf-divider')]),
+                    html.Div([
+                        html.P("R² = 0.52", className='kf-val'),
+                        html.P("Model performance (LOO-CV)", className='kf-label'),
+                    ], className='kf-item'),
+                ], className='kf-row'),
+            ], className='paper-content'),
+        ], className='paper-section paper-section-tinted'),
 
-        # main grid
+        # section 1
         html.Div([
-
-            # left column
             html.Div([
+                html.P("1. Background", className='section-label'),
+                html.P("The cause is fertilizer, not weather.", className='section-heading'),
+                html.P("Every spring, nitrogen fertilizer from Midwest farms drains into the Mississippi River and flows 1,500 miles south into the Gulf. This triggers massive algal blooms in the shallow coastal shelf near Louisiana. When the algae die and decompose, the bacterial breakdown process consumes all available dissolved oxygen, creating a hypoxic zone where fish, shrimp, and bottom-dwelling life suffocate. The Gulf Hypoxia Task Force set a target of reducing the dead zone to under 4,921 km² by 2035. The 40-year mean is 15,154 km², more than three times that target.",
+                       className='section-text'),
+            ], className='paper-content'),
+        ], className='paper-section'),
 
+        # figure 1
+        html.Div([
+            html.Div([
+                html.P("2. Results", className='section-label'),
+                html.P("Dead zone area fluctuates dramatically year to year but shows no long-term decline.", className='section-heading'),
+            ], className='paper-content'),
+            html.Div([
+                dcc.Graph(id='timeseries-chart', style={'height': '280px'},
+                          config={'displayModeBar': False}),
+                html.P("Figure 1. Annual Gulf of Mexico dead zone area (km²), 1985–2024. Blue bars show observed extent; red bars indicate years flagged as anomalous by Isolation Forest. The dashed line shows model predictions; the horizontal line marks the 40-year mean of 15,154 km².",
+                       className='figure-caption'),
+            ], className='figure-block'),
+        ], className='paper-section'),
+
+        # figure 2 + 3 side by side
+        html.Div([
+            html.Div([
+                html.P("The dominant driver is nitrogen, not temperature.", className='section-heading'),
+                html.P("Spring nitrogen loading from the Mississippi River correlates strongly with summer dead zone size (r = 0.788). Sea surface temperature adds marginal predictive value. This confirms that agricultural runoff, not climate variability, is the primary lever controlling hypoxic zone extent.",
+                       className='section-text'),
+            ], className='paper-content'),
+            html.Div([
                 html.Div([
-                    html.Div([
-                        html.P("Dead zone area 1985–2024", className='card-label'),
-                        html.P("Actual vs model prediction. Red bars = anomalous years.", className='card-sublabel'),
-                    ], className='card-header'),
-                    dcc.Graph(id='timeseries-chart', style={'height': '260px'},
+                    dcc.Graph(id='scatter-chart', style={'height': '260px'},
                               config={'displayModeBar': False}),
-                ], className='card'),
-
+                    html.P("Figure 2. Scatter plot of spring nitrogen load vs dead zone area. Each point represents one year. Red points are anomalous years identified by Isolation Forest.",
+                           className='figure-caption'),
+                ], className='figure-half'),
                 html.Div([
-                    html.Div([
-                        html.Div([
-                            html.P("Nitrogen load vs dead zone size", className='card-label'),
-                            html.P("Each dot is one year. Higher nitrogen generally means a larger dead zone.", className='card-sublabel'),
-                        ], className='card-header'),
-                        dcc.Graph(id='scatter-chart', style={'height': '240px'},
-                                  config={'displayModeBar': False}),
-                    ], className='card'),
-
-                    html.Div([
-                        html.Div([
-                            html.P("What drives the model", className='card-label'),
-                            html.P("Nitrogen loading accounts for 80% of the model's predictive power.", className='card-sublabel'),
-                        ], className='card-header'),
-                        dcc.Graph(id='importance-chart', style={'height': '240px'},
-                                  config={'displayModeBar': False}),
-                    ], className='card'),
-
-                ], className='two-col'),
-
-                html.Div([
-                    html.Div([
-                        html.P("Model residuals", className='card-label'),
-                        html.P("How far off was the model each year? Large gaps (red) correspond to hurricanes, droughts, or record flooding.", className='card-sublabel'),
-                    ], className='card-header'),
-                    dcc.Graph(id='residuals-chart', style={'height': '220px'},
+                    dcc.Graph(id='importance-chart', style={'height': '260px'},
                               config={'displayModeBar': False}),
-                ], className='card'),
+                    html.P("Figure 3. Random Forest feature importance. Nitrogen loading accounts for 80.4% of predictive power; sea surface temperature contributes 19.6%.",
+                           className='figure-caption'),
+                ], className='figure-half'),
+            ], className='figure-two-col'),
+        ], className='paper-section'),
 
-            ], className='left-col'),
-
-            # right column
+        # figure 4
+        html.Div([
             html.Div([
+                html.P("3. Anomaly Detection", className='section-label'),
+                html.P("Six years defy the model — each for a distinct reason.", className='section-heading'),
+                html.P("Isolation Forest identifies years where the dead zone was dramatically larger or smaller than nitrogen load alone would predict. In 2017, record spring flooding pushed the zone to 22,720 km², the largest ever measured. In 2020, Hurricane Hanna hit the Gulf days before the annual survey cruise, physically mixing the water column and collapsing the zone before measurement.",
+                       className='section-text'),
+            ], className='paper-content'),
+            html.Div([
+                dcc.Graph(id='residuals-chart', style={'height': '240px'},
+                          config={'displayModeBar': False}),
+                html.P("Figure 4. Model residuals (actual minus predicted) by year. Red bars indicate years where the absolute residual exceeds 4,000 km², each corresponding to a discrete meteorological event.",
+                       className='figure-caption'),
+            ], className='figure-block'),
+        ], className='paper-section'),
 
+        # anomaly table + model stats
+        html.Div([
+            html.Div([
+                html.P("4. Summary tables", className='section-label'),
                 html.Div([
-                    html.P("Model performance", className='card-label'),
                     html.Div([
+                        html.P("Table 1. Anomalous years", className='table-title'),
+                        html.Div(id='anomaly-list'),
+                    ], className='table-block'),
+                    html.Div([
+                        html.P("Table 2. Model statistics", className='table-title'),
                         html.Div([
-                            html.P("R²", className='metric-label'),
-                            html.P("0.52", className='metric-value', style={'color': '#1a6b8a'}),
-                            html.P("variance explained", className='metric-sub'),
-                        ], className='metric-card'),
-                        html.Div([
-                            html.P("MAE", className='metric-label'),
-                            html.P("2,517", className='metric-value', style={'color': '#1a6b8a'}),
-                            html.P("km² avg error", className='metric-sub'),
-                        ], className='metric-card'),
-                    ], className='metric-grid'),
-                ], className='card', style={'marginBottom': '16px'}),
-
-                html.Div([
-                    html.P("Anomalous years", className='card-label'),
-                    html.P("Years where the dead zone was far larger or smaller than the nitrogen load alone would predict.", className='card-sublabel'),
-                    html.Div(id='anomaly-list', style={'marginTop': '12px'}),
-                ], className='card', style={'padding': '18px 20px 20px'}),
-
-            ], className='right-col'),
-
-        ], className='main-grid'),
+                            html.Div([html.Span("R²", className='stat-name'), html.Span("0.52", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("MAE", className='stat-name'), html.Span("2,517 km²", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("Validation", className='stat-name'), html.Span("Leave-one-out CV", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("Years (n)", className='stat-name'), html.Span("40", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("N-load importance", className='stat-name'), html.Span("80.4%", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("SST importance", className='stat-name'), html.Span("19.6%", className='stat-number')], className='stat-item'),
+                            html.Div([html.Span("Anomalies flagged", className='stat-name'), html.Span("6 years", className='stat-number')], className='stat-item'),
+                        ]),
+                    ], className='table-block'),
+                ], className='tables-row'),
+            ], className='paper-content'),
+        ], className='paper-section'),
 
         # footer
         html.Div([
-            html.P("Data: LUMCON / NOAA NCCOS · USGS Mississippi Nutrient Flux · NOAA OISST · Built by @bhavv04 · Source code on GitHub",
-                   className='footer-text'),
-        ], className='footer'),
+            html.Div([
+                html.P("Data sources: LUMCON / NOAA NCCOS Gulf of Mexico Hypoxia Program · USGS Mississippi River Nutrient Flux · NOAA OISST", className='footer-line'),
+            ], className='paper-content'),
+        ], className='paper-footer'),
 
     ], className='app-wrapper')

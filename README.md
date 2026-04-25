@@ -2,7 +2,7 @@
 
 > Every summer, an area the size of New Jersey suffocates in the Gulf of Mexico.
 
-![Dead Zone Animation](outputs/deadzone_animation.gif)
+![Dead Zone Animation](outputs/deadzone_animation_v2.gif)
 
 This project models the seasonal collapse and recovery of the Gulf of Mexico's hypoxic "dead zone" using 40 years of oceanographic data. It combines annual cruise measurements, river nutrient loading, and sea surface temperature to predict dead zone size and tell the story of how Midwest farming shows up in the ocean.
 
